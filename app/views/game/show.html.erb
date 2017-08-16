@@ -1,0 +1,24 @@
+<h2>Guess a letter</h2>
+
+<% if flash[:message] %>
+  <p>
+    <span class="error"><%= flash[:message] %></span>
+  </p>
+<% end %>
+
+<p>
+  Wrong Guesses:
+  <span class="guesses"><%= @game.wrong_guesses %></span>
+</p>
+
+<p>
+  Word so far:
+  <span class="word"><%= @game.word_with_guesses %></span>
+</p>
+
+<%= form_tag guess_path, :method => 'post' do %>
+  <%= text_field_tag 'guess', '', :size => 1, :autocomplete => 'off' %>
+  <%= submit_tag 'Guess!' %>
+<% end %>
+
+<%= render :template => 'game/new' %>
