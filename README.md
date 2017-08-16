@@ -40,6 +40,27 @@ and mapped to actions;
 * how the app's behavior can be inspected by looking at logs or invoking
 a debugger. 
 
+# Run the App
+
+Like substantially all Rails apps, you can get this one running by doing
+these steps:
+
+0. Clone or fork the repo
+
+0. Change into the app's root directory `hangperson-rails`
+
+0. Run `bundle install --without production` to install needed Gems
+
+0. Run `rails server` to start the server
+
+0. Point your browser at `http://localhost:3000`
+
+(For most Rails apps you'd also have to create and seed the development
+database, but like the Sinatra app, this app doesn't use a database at all.)
+
+Play around with the game to convince yourself it works the same as the
+Sinatra version.
+
 # Code Comprehension Questions
 
 ## Where Things Are
@@ -102,6 +123,8 @@ serialization works in this case but JSON doesn't.)
 `redirect` (which as you can see becomes `redirect_to` in Rails) to
 redirect the player to another action, or `erb` to render a view.  Why
 are there no explicit calls corresponding to `erb` in the Rails version?
+Based on the code in the app, can you discern the
+Convention-over-Configuration rule that is at work here?
 
 0. How are forms handled differently between Sinatra and Rails views?
 (Hint: it would be perfectly legal to use raw HTML `<form>` tags in
@@ -110,4 +133,23 @@ Rails; why do you think that's not the preferred way to do it?)
 0. How are form elements such as text fields and buttons handled in
 Rails?  (Again, raw HTML would be legal, but what's the motivation
 behind the way Rails does it?)
+
+0. In the Sinatra version, the `show`, `win` and `lose` views re-use the
+code in the `new` view that offers a button for starting a new game.
+How is this done in the Rails version?  
+
+## Cucumber scenarios
+
+Verify the Cucumber scenarios run and pass by running `rake cucumber`.
+
+The Cucumber scenarios and step definitions (everything under
+`features/`, including the support for Webmock in `webmock.rb`) was
+copied verbatim from the Sinatra version, with one exception: the
+`features/support/env.rb` file is simpler because the `cucumber-rails`
+gem automatically does some of the things we had to do explicitly in
+that file for the Sinatra version.
+
+0. What is a qualitative explanation for why the Cucumber scenarios and
+step definitions didn't need to be modified at all to work equally well
+with the Sinatra or Rails versions of the app?
 
