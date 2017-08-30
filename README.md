@@ -1,5 +1,7 @@
 # Hangperson on Rails
 
+**NOTE: Do not clone this repo to your workspace. Fork it first, then clone your fork.**
+
 In a [previous
 assignment](https://github.com/saasbook/hw-sinatra-saas-hangperson) you
 created a simple Web app that plays the Hangperson game.
