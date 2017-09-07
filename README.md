@@ -42,6 +42,10 @@ and mapped to actions;
 * how the app's behavior can be inspected by looking at logs or invoking
 a debugger. 
 
+**NOTE: You may find these [Rails guides](http://guides.rubyonrails.org/v4.2/) and the 
+[Rails reference documentation](http://api.rubyonrails.org/v4.2.9/) 
+helpful to have on hand.**
+
 # Run the App
 
 Like substantially all Rails apps, you can get this one running by doing
