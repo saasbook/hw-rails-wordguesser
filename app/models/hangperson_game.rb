@@ -9,7 +9,7 @@ class HangpersonGame
   end
 
   def guess(letter)
-    if letter.nil? || letter !~ /\A\w\Z/i # match single letter,ignoring case
+    if letter.nil? || letter !~ /\A[a-zA-Z]\Z/i # match single letter,ignoring case
       raise ArgumentError
     end
     letter = letter[0].downcase
