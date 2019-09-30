@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '>= 2.2.0', '<= 3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.9'
+gem 'rails', '5.2.3'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
