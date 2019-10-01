@@ -53,7 +53,7 @@ these steps:
 
 1. Clone or fork the repo
 
-1. Change into the app's root directory `hangperson-rails`
+1. Change into the app's root directory `hw-hangperson-rails`
 
 1. Run `bundle install --without production`
 
