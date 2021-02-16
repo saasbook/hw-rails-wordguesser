@@ -17,8 +17,8 @@ GEM
     actionview (4.2.11)
       activesupport (= 4.2.11)
       builder (~> 3.1)
-      erubis (~> 2.7.0)
-      rails-dom-testing (~> 1.0, >= 1.0.5)
+      erubi (~> 1.4)
+      rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
     activejob (4.2.11)
       activesupport (= 4.2.11)
@@ -33,7 +33,6 @@ GEM
     activesupport (4.2.11)
       i18n (~> 0.7)
       minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
@@ -210,4 +209,4 @@ RUBY VERSION
    ruby 2.6.6p146
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
