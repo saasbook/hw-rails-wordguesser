@@ -1,6 +1,6 @@
 Feature: guess correct letter
 
-  As a player playing Hangperson
+  As a player playing WordGuesser
   So that I can make progress toward the goal
   I want to see when my guess is correct
 

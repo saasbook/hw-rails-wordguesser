@@ -1,14 +1,14 @@
-# Hangperson on Rails
+# WordGuesser on Rails
 
 **NOTE: Do not clone this repo to your workspace. Fork it first, then clone your fork.**
 
 In a [previous
-assignment](https://github.com/saasbook/hw-sinatra-saas-hangperson) you
-created a simple Web app that plays the Hangperson game.
+assignment](https://github.com/saasbook/hw-sinatra-saas-wordguesser) you
+created a simple Web app that plays the WordGuesser game.
 
 More specifically:
 
-1. You wrote the app's code in its own class, `HangpersonGame`, which
+1. You wrote the app's code in its own class, `WordGuesserGame`, which
 knows nothing about being part of a Web app.
 
 2. You used the Sinatra framework to "wrap" the game code by providing a
@@ -22,7 +22,7 @@ set of RESTful actions that the player can take, with the following routes:
 * `GET  /lose`  -- redirected here when `show` action detects game lost
 
 3. To maintain the state of the game between (stateless) HTTP requests,
-you stored a copy of the `HangpersonGame` instance itself in the
+you stored a copy of the `WordGuesserGame` instance itself in the
 `session[]` hash provided by Sinatra, which is an abstraction for
 storing information in cookies passed back and forth between the app and
 the player's browser.
@@ -53,7 +53,7 @@ these steps:
 
 1. Clone or fork the repo
 
-1. Change into the app's root directory `hw-hangperson-rails`
+1. Change into the app's root directory `hw-rails-wordguesser`
 
 1. Run `bundle install --without production`
 
@@ -86,14 +86,14 @@ Sinatra version.
 
 Both apps have similar structure: the user triggers an action on a game
 via an HTTP request; a particular chunk of code is called to "handle"
-the request as appropriate; the `HangpersonGame` class logic is called
+the request as appropriate; the `WordGuesserGame` class logic is called
 to handle the action; and usually, a view is rendered to show the
 result.  But the locations of the code corresponding to each of these
 tasks is slightly different between Sinatra and Rails.
 
 
 **Q2.1.** Where in the Rails app directory structure is the code corresponding
-to the `HangpersonGame` model?
+to the `WordGuesserGame` model?
 
 **Q2.2.** In what file is the code that most closely corresponds to the 
 logic in the Sinatra apps' `app.rb` file that handles incoming user
