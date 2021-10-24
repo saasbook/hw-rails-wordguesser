@@ -1,4 +1,4 @@
-class HangpersonGame
+class WordGuesserGame
 
   attr_accessor :word, :guesses, :wrong_guesses
 

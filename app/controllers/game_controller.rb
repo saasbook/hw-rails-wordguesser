@@ -6,7 +6,7 @@ class GameController < ApplicationController
   private
   
   def get_game_from_session
-    @game = HangpersonGame.new('')
+    @game = WordGuesserGame.new('')
     if !session[:game].blank?
       @game = YAML.load(session[:game])
     end
@@ -22,8 +22,8 @@ class GameController < ApplicationController
   end
 
   def create
-    word = params[:word] || HangpersonGame.get_random_word
-    @game = HangpersonGame.new(word)
+    word = params[:word] || WordGuesserGame.get_random_word
+    @game = WordGuesserGame.new(word)
     redirect_to game_path
   end
 
