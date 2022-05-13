@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WordGuesser</title>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1 class="display-4">Play WordGuesser!</h1>
+      <p class="lead">Random word generator provided by Watchout4snakes.com</p>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
