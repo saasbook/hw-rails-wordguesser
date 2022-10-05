@@ -35,8 +35,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     arel (6.0.4)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
@@ -121,7 +121,7 @@ GEM
       middleware
       thor
       thread_safe
-    public_suffix (4.0.6)
+    public_suffix (5.0.0)
     racc (1.5.2)
     rack (1.6.13)
     rack-test (0.6.3)
