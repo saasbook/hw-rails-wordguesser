@@ -16,12 +16,11 @@
   <span class="word"><%= @game.word_with_guesses %></span>
 </p>
 
-<%= form_tag guess_path, :method => 'post' do %>
+<%= form_with url: guess_path, method: :post do |form| %>
   <div class="form-group row">
-    <label for="guess" class="col-md-2 col-form-label">Guess a letter:</label>
-    <input type="text" name="guess" autocomplete="off"
-           class="form-control col-md-1"/>
-    <input type="submit" value="Guess!" class="col-md-2 btn btn-success"/>
+    <%= form.label :guess, 'Guess a letter:', class: "col-md-2 col-form-label" %>
+    <%= form.text_field :guess, autocomplete: 'off', class: "form-control col-md-1" %>
+    <%= form.submit 'Guess!', class: "col-md-2 btn btn-success" %>
   </div>
 <% end %>
 

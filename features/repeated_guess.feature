@@ -1,6 +1,6 @@
 Feature: guess repeated letter
 
-  As a player playing WordGuesser
+  As a player playing Wordguesser
   So that I can avoid wasting guesses on letters I've already tried
   I want to be informed when I guess a letter I've already tried
 

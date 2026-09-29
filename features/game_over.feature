@@ -1,6 +1,6 @@
 Feature: game over
 
-  As a player playing WordGuesser
+  As a player playing Wordguesser
   So I can get back to my life 
   I want to know when the game is over
 
@@ -13,6 +13,6 @@ Scenario: game over because I guess the word
 Scenario: game over because I run out of guesses
 
   Given I start a new game with word "zebra"
-  When I make the following guesses: i,s,u,c,k,h,a,r
+  When I make the following guesses: t,u,v,w,x,y
   And I guess "d"
   Then I should see "Sorry, you lose!"

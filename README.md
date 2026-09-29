@@ -28,82 +28,58 @@ Understand the differences between how Rails and Sinatra handle various aspects 
 * how an app is started and stopped;
 * how the app's behavior can be inspected by looking at logs or invoking a debugger.
 
-## 1. Run the App
+## Developing Your Assignment
 
-**NOTE: You may find these [Rails guides](http://guides.rubyonrails.org/v4.2/) and the [Rails reference documentation](http://api.rubyonrails.org/v4.2.9/) helpful to have on hand.**
+There are four supported ways to work on this assignment; pick one and see
+[DEVELOPING.md](DEVELOPING.md) for detailed setup instructions:
 
-Like substantially all Rails apps, you can get this one running by doing these steps:
+1. **Local development.** Install the Ruby version listed in `.ruby-version`
+   (via rvm, rbenv, or asdf), then install the gems and start the app:
 
-1. Clone or fork the [repo](https://github.com/saasbook/hw-rails-wordguesser)
+   ```sh
+   $ gem install bundler
+   $ bundle install
+   $ bin/rails server
+   ```
 
-2. Change into the app's root directory `hw-rails-wordguesser`
+   The app is then at `http://localhost:3000`, and `bundle exec cucumber` runs
+   its Cucumber scenarios.
 
-3. Run `bundle install --without production`
+2. **Local development with Docker.** No Ruby install needed — build the
+   provided `Dockerfile` and start a shell in a container, mounting your
+   working copy so your edits are picked up without a rebuild and publishing
+   the port the app serves on:
 
-4. | Local Development                      	| Codio                                                     	|
-    |----------------------------------------	|-----------------------------------------------------------	|
-    | Run `rails server` to start the server 	| Run <br>`rails server -b 0.0.0.0`<br> to start the server 	|
+   ```sh
+   $ docker build -t hw-rails-wordguesser .
+   $ docker run -it --rm -p 3000:3000 -v "$(pwd)":/app hw-rails-wordguesser
+   ```
 
-### To view your site in Codio
-Use the Preview button that says "Project Index" in the top tool bar. Click the drop down and select "Box URL"
+   Inside the container, start the app with `bin/rails server -b 0.0.0.0` and
+   visit `http://localhost:3000` in your own browser.
 
-![.guides/img/BoxURLpreview](https://global.codio.com/content/BoxURLpreview.png)
+3. **Codio.** If your course uses Codio, open the assignment from your Codio
+   course page — everything is preinstalled. Start the app with
+   `bin/rails server -b 0.0.0.0` and open it with the "Box URL" button.
 
-For subsequent previews, you will not need to press the drop down -- your button should now read "Box URL".
+4. **GitHub Codespaces.** From your copy of the repo on GitHub, choose
+   **Code → Codespaces → Create codespace** to get a browser-based VS Code
+   environment built from the same `Dockerfile`, with all dependencies
+   installed for you. Start the app with `bin/rails server -b 0.0.0.0`; the
+   forwarded port 3000 opens it in your browser.
 
-**Q1.1.**  What is the goal of running `bundle install`?
+## Instructions
 
-**Q1.2.**  Why is it good practice to specify `--without production` when running  it on your development computer?
+The assignment itself is in the [instructions](instructions/README.md) folder
+of this repo (the same pages your course may also show you on Codio or on the
+CHIPS instructions website):
 
-**Q1.3.**
-(For most Rails apps you'd also have to create and seed the development database, but like the Sinatra app, this app doesn't use a database at all.)
+* [1. Run the App](instructions/02-1--Run-the-App.md)
+* [2. Where Things Are](instructions/03-2--Where-Things-Are.md)
+* [3. Session](instructions/04-3--Session.md)
+* [4. Views](instructions/05-4--Views.md)
+* [5. Cucumber scenarios](instructions/06-5--Cucumber-scenarios.md)
+* [Submission](instructions/07-Submission.md)
 
-Play around with the game to convince yourself it works the same as the Sinatra version.
-
-## 2. Where Things Are
-
-Both apps have similar structure: the user triggers an action on a game via an HTTP request; a particular chunk of code is called to "handle" the request as appropriate; the `WordGuesserGame` class logic is called to handle the action; and usually, a view is rendered to show the result.  But the locations of the code corresponding to each of these tasks is slightly different between Sinatra and Rails.
-
-**Q2.1.** Where in the Rails app directory structure is the code corresponding to the `WordGuesserGame` model?
-
-**Q2.2.** In what file is the code that most closely corresponds to the  logic in the Sinatra apps' `app.rb` file that handles incoming user actions?
-
-**Q2.3.** What class contains that code?
-
-**Q2.4.** From what other class (which is part of the Rails framework) does that class inherit?
-
-**Q2.5.** In what directory is the code corresponding to the Sinatra app's views (`new.erb`, `show.erb`, etc.)?
-
-**Q2.6.** The filename suffixes for these views are different in Rails than they were in the Sinatra app.  What information does the rightmost suffix of the filename  (e.g.: in `foobar.abc.xyz`, the suffix `.xyz`) tell you about the file contents?
-
-**Q2.7.** What information does the  other suffix tell you about what Rails is being asked to do with the file?
-
-**Q2.8.** In what file is the information in the Rails app that maps routes (e.g. `GET /new`)  to controller actions?
-
-**Q2.9.** What is the role of the `:as => 'name'` option in the route declarations of `config/routes.rb`?  (Hint: look at the views.)
-
-## 3. Session
-
-Both apps ensure that the current game is loaded from the session before any controller action occurs, and that the (possibly modified) current game is replaced in the session after each action completes.
-
-**Q3.1.** In the Sinatra version, `before do...end` and `after do...end` blocks are used for session management.  What is the closest equivalent in this Rails app, and in what file do we find the code that does it?
-
-**Q3.2.** A popular serialization format for exchanging data between Web apps is [JSON](https://en.wikipedia.org/wiki/JSON).  Why wouldn't it work to use JSON instead of YAML?  (Hint: try replacing `YAML.load()` with `JSON.parse()` and `.to_yaml` with `.to_json` to do this test.  You will have to clear out your cookies associated with `localhost:3000`, or restart your browser with a new Incognito/Private Browsing window, in order to clear out the `session[]`.  Based on the error messages you get when trying to use JSON serialization, you should be able to explain why YAML serialization works in this case but JSON doesn't.)
-
-## 4. Views
-
-**Q4.1.** In the Sinatra version, each controller action ends with either `redirect` (which as you can see becomes `redirect_to` in Rails) to redirect the player to another action, or `erb` to render a view.  Why are there no explicit calls corresponding to `erb` in the Rails version? (Hint: Based on the code in the app, can you discern the Convention-over-Configuration rule that is at work here?)
-
-**Q4.2.** In the Sinatra version, we directly coded an HTML form using the `<form>` tag, whereas in the Rails version we are using a Rails method `form_tag`, even though it would be perfectly legal to use raw HTML `<form>` tags in Rails.  Can you think of a reason Rails might introduce this "level of indirection"?
-
-**Q4.3.** How are form elements such as text fields and buttons handled in Rails?  (Again, raw HTML would be legal, but what's the motivation behind the way Rails does it?)
-
-**Q4.4.** In the Sinatra version, the `show`, `win` and `lose` views re-use the code in the `new` view that offers a button for starting a new game. What Rails mechanism allows those views to be re-used in the Rails version?
-
-## 5. Cucumber scenarios
-
-The Cucumber scenarios and step definitions (everything under `features/`, including the support for Webmock in `webmock.rb`) was copied verbatim from the Sinatra version, with one exception: the `features/support/env.rb` file is simpler because the `cucumber-rails` gem automatically does some of the things we had to do explicitly in that file for the Sinatra version.
-
-Verify the Cucumber scenarios run and pass by running `rake cucumber`.
-
-**Q5.1.** What is a qualitative explanation for why the Cucumber scenarios and step definitions didn't need to be modified at all to work equally well with the Sinatra or Rails versions of the app?
+Answer the questions on those pages as your course directs, and submit the app
+on Gradescope as described on the Submission page.

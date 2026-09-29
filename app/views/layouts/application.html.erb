@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>WordGuesser</title>
-    <!-- Latest compiled and minified Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Latest compiled and minified Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div class="jumbotron">
       <h1 class="display-4">Play WordGuesser!</h1>
-      <p class="lead">Random word generator provided by Watchout4snakes.com</p>
     </div>
     <div class="container">
       <%= yield %>

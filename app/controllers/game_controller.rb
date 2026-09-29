@@ -17,7 +17,7 @@ class GameController < ApplicationController
   end
 
   def guess
-    letter = params[:guess]
+    letter = params[:guess].to_s
     begin
       flash[:message] = "You have already used that letter." unless @game.guess(letter[0])
     rescue ArgumentError
@@ -40,7 +40,9 @@ class GameController < ApplicationController
     @game = WordGuesserGame.new('')
     return if session[:game].blank?
 
-    @game = YAML.load(session[:game])
+    # YAML will only rebuild objects of classes we explicitly allow, so that a
+    # tampered cookie cannot instantiate arbitrary Ruby objects.
+    @game = YAML.safe_load(session[:game], permitted_classes: [WordGuesserGame])
   end
 
   def store_game_in_session

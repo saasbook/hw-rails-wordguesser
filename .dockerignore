@@ -1,0 +1,5 @@
+# Keep the build context (and the image) free of local state.
+.git
+log/*
+tmp/*
+.byebug_history
